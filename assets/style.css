@@ -1,7 +1,50 @@
 .navbar{
     color: white;
 }
+#dashboard{
+  margin-left: 20px;
+}
+
+#main-row{
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
 h1{
     margin-left: 37%;
+}
+#search-section{
+    padding: 20px 0px;
+}
+#col2{
+    background-color: white;
+}
+#row1{
+    padding: 10px 20px;
+    height: 300px;
+    border: 1px solid #e2e1e1;
+    margin: 17px 5px;
+    background-color: white;
+    line-height: 3;
+}
+#row2{
+    height: 200px;
+    margin: 10px;
+    background-color: white;
+}
+
+#city-and-date{
+    line-height: 2;
+}
+
+#row{
+    margin-left: 1px !important;
+}
+.col-md-2{
+    background-color: #297cf9;
+    margin: 15px;
+}
+#row2-header{
+    margin-left: 10px;
 }
 
