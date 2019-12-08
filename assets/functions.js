@@ -1,3 +1,8 @@
+function momentAddDays(numDays){
+    var formatter="MM/DD/YYYY";
+   return moment().add(numDays,'day').format(formatter);
+}
+
 function displayCurrent(currentDate,response){
     var iconCode=response.weather[0]['icon'];
     var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
@@ -8,7 +13,24 @@ function displayCurrent(currentDate,response){
         $("#wind-speed").text("Wind Speed: "+response.wind.speed+" MPH");
 }
 
-
 function displayUVIndex(response){
     $("#uv-index").text("UV Index: "+response.value);
+}
+
+function display5Day(response){
+    for(var i=0; i<5; i++){
+       var temp=response.list[i].main.temp;
+       var humid=response.list[i].main.humidity;
+       var iconCode=response.list[i].weather[0].icon;
+       var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+       console.log("humid: "+humid+" icon: "+iconCode);
+      var allEl= $(".col-md-2").eq(i).children();
+      allEl.eq(0).text(momentAddDays(i+1));
+      allEl.eq(1).attr('src',iconUrl);
+      allEl.eq(2).text("Temp: "+temp+" °F");
+      allEl.eq(3).text("Humidity: "+humid+"%");
+
+        
+    }
+
 }

@@ -30,6 +30,7 @@ h1{
 #row2{
     height: 200px;
     margin: 10px;
+    color:white;
     background-color: white;
 }
 
@@ -43,8 +44,14 @@ h1{
 .col-md-2{
     background-color: #297cf9;
     margin: 15px;
+    line-height: 2;
 }
 #row2-header{
     margin-left: 10px;
+}
+.date{
+    font-size:19px;
+    font-weight: bolder;
+
 }
 
