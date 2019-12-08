@@ -1,6 +1,8 @@
+$(document).ready(function() {
 
 var currentDate=momentAddDays(0);
 
+displaySearchHistory();
 
 /* * getting weather for default home page based on user's current location * */
 
@@ -73,5 +75,17 @@ function searchByCity(cityName){
    }).then(function(response){
     display5Day(response);
    })
+   localStorage.setItem(cityName,"weather_search");
 }
 
+/* * * * */
+
+/* getting weather for the search history */
+$("a").on("click",function(){
+    searchByCity($(this).text());
+});
+
+
+
+
+});

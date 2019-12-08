@@ -1,3 +1,5 @@
+
+
 function momentAddDays(numDays){
     var formatter="MM/DD/YYYY";
    return moment().add(numDays,'day').format(formatter);
@@ -34,3 +36,14 @@ function display5Day(response){
     }
 
 }
+
+function displaySearchHistory(){
+    for(var i=0; i<localStorage.length; i++){
+        if(localStorage.getItem(localStorage.key(i))=="weather_search"){  
+           var el= $("<a class=\"list-group-item list-group-item-action\"></a>").text(localStorage.key(i));
+            $(".list-group").append(el);
+        }
+    }
+}
+
+
