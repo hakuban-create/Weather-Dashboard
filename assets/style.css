@@ -28,7 +28,7 @@ h1{
     line-height: 3;
 }
 #row2{
-    height: 200px;
+    height: 500px;
     margin: 10px;
     color:white;
     background-color: white;
@@ -43,6 +43,7 @@ h1{
     margin-left: 1px !important;
 }
 .col-md-2{
+    height: 200px;
     background-color: #297cf9;
     margin: 15px;
     line-height: 2;

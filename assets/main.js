@@ -1,5 +1,6 @@
 $(document).ready(function() {
 $("#wicon").hide();
+$("#main-row").hide();
 
 var currentDate=momentAddDays(0);
 
@@ -18,6 +19,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
        displayCurrent(currentDate,response);
     }).then(function(){
         $("#spinner").hide();
+        $("#main-row").show();
     })
 
     var queryUrlUV="http://api.openweathermap.org/data/2.5/uvi?appid=7b0bd5c0c62495154f103ff6cbf437d6&lat="+position.coords.latitude+"&lon="+position.coords.longitude;
@@ -53,6 +55,7 @@ searchByCity($("#search-input").val());
 });
 
 function searchByCity(cityName){
+    cityName=cityName.toLowerCase();
 
     var queryUrlCity1Day="http://api.openweathermap.org/data/2.5/weather?q="+cityName+"&units=imperial&appid=7b0bd5c0c62495154f103ff6cbf437d6";
     $.ajax({
@@ -77,6 +80,10 @@ function searchByCity(cityName){
    }).then(function(response){
     display5Day(response);
    })
+   var el= $("<a class=\"list-group-item list-group-item-action\"></a>").text(cityName);
+   if(localStorage.getItem(cityName)==undefined){
+   $(".list-group").append(el);
+   }
    localStorage.setItem(cityName,"weather_search");
 }
 
@@ -87,6 +94,10 @@ $("a").on("click",function(){
     searchByCity($(this).text());
 });
 
+$("#search-input").on("click",function(){
+    console.log("clicked");
+    $("#search-input").val('');
+})
 
 
 
