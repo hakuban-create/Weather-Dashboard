@@ -2,9 +2,10 @@
 var currentDate=momentAddDays(0);
 
 
-/* * getting weather info for user's current location * */
+/* * getting weather for default home page based on user's current location * */
 
 /* 1 day forecast */
+
 navigator.geolocation.getCurrentPosition(function(position) {
     var queryUrl="http://api.openweathermap.org/data/2.5/weather?lat="+position.coords.latitude+"&lon="+position.coords.longitude+"&units=imperial&appid=7b0bd5c0c62495154f103ff6cbf437d6";
     console.log("query url: "+queryUrl);
@@ -40,4 +41,37 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
 /* * * * * * * * */
 
+
+/* * getting weather for user searched City * */
+
+$("#search-btn").on("click",function(){
+searchByCity($("#search-input").val());
+});
+
+function searchByCity(cityName){
+
+    var queryUrlCity1Day="http://api.openweathermap.org/data/2.5/weather?q="+cityName+"&units=imperial&appid=7b0bd5c0c62495154f103ff6cbf437d6";
+    $.ajax({
+        url: queryUrlCity1Day,
+        method: "GET"
+    }).then(function(response){
+        displayCurrent(currentDate,response);
+        
+        var queryUrlUV="http://api.openweathermap.org/data/2.5/uvi?appid=7b0bd5c0c62495154f103ff6cbf437d6&lat="+response.coord.lat+"&lon="+response.coord.lon;
+        $.ajax({
+            url: queryUrlUV,
+            method: "GET"
+        }).then(function(response){
+            displayUVIndex(response);
+        })
+    })
+
+   var queryUrlCity5Days="http://api.openweathermap.org/data/2.5/forecast?cnt=5&q="+cityName+"&units=imperial&appid=7b0bd5c0c62495154f103ff6cbf437d6";
+   $.ajax({
+    url: queryUrlCity5Days,
+    method: "GET"
+   }).then(function(response){
+    display5Day(response);
+   })
+}
 
