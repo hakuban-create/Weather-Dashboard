@@ -6,6 +6,7 @@ function momentAddDays(numDays){
 }
 
 function displayCurrent(currentDate,response){
+    $("#wicon").show();
     var iconCode=response.weather[0]['icon'];
     var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
         $("#city-and-date").text(response.name+","+response.sys.country+"  ("+currentDate+")");

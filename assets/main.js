@@ -1,4 +1,5 @@
 $(document).ready(function() {
+$("#wicon").hide();
 
 var currentDate=momentAddDays(0);
 
@@ -7,7 +8,6 @@ displaySearchHistory();
 /* * getting weather for default home page based on user's current location * */
 
 /* 1 day forecast */
-
 navigator.geolocation.getCurrentPosition(function(position) {
     var queryUrl="http://api.openweathermap.org/data/2.5/weather?lat="+position.coords.latitude+"&lon="+position.coords.longitude+"&units=imperial&appid=7b0bd5c0c62495154f103ff6cbf437d6";
     console.log("query url: "+queryUrl);
@@ -16,6 +16,8 @@ navigator.geolocation.getCurrentPosition(function(position) {
         method: "GET"
     }).then(function(response){
        displayCurrent(currentDate,response);
+    }).then(function(){
+        $("#spinner").hide();
     })
 
     var queryUrlUV="http://api.openweathermap.org/data/2.5/uvi?appid=7b0bd5c0c62495154f103ff6cbf437d6&lat="+position.coords.latitude+"&lon="+position.coords.longitude;
