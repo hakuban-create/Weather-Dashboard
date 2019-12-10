@@ -61,5 +61,9 @@ h1{
 }
 
 #spinner{
-    margin: 10% 40%;
+    margin: 10% 45%;
+}
+
+#error{
+    color: red;
 }

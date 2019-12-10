@@ -1,8 +1,9 @@
 $(document).ready(function() {
 $("#wicon").hide();
-$("#main-row").hide();
+$("#row1").hide();
 
 var currentDate=momentAddDays(0);
+var searchClick=0;
 
 displaySearchHistory();
 
@@ -19,7 +20,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
        displayCurrent(currentDate,response);
     }).then(function(){
         $("#spinner").hide();
-        $("#main-row").show();
+        $("#row1").show();
     })
 
     var queryUrlUV="http://api.openweathermap.org/data/2.5/uvi?appid=7b0bd5c0c62495154f103ff6cbf437d6&lat="+position.coords.latitude+"&lon="+position.coords.longitude;
@@ -51,10 +52,15 @@ navigator.geolocation.getCurrentPosition(function(position) {
 /* * getting weather for user searched City * */
 
 $("#search-btn").on("click",function(){
+$("#spinner").hide();
+if(searchClick==0){
 searchByCity($("#search-input").val());
+}
+searchClick=1;
 });
 
 function searchByCity(cityName){
+    var cod=0;
     cityName=cityName.toLowerCase();
 
     var queryUrlCity1Day="http://api.openweathermap.org/data/2.5/weather?q="+cityName+"&units=imperial&appid=7b0bd5c0c62495154f103ff6cbf437d6";
@@ -62,7 +68,10 @@ function searchByCity(cityName){
         url: queryUrlCity1Day,
         method: "GET"
     }).then(function(response){
+        $("#error").hide();
+        $("#col2").show();
         displayCurrent(currentDate,response);
+        cod=response.cod;
         
         var queryUrlUV="http://api.openweathermap.org/data/2.5/uvi?appid=7b0bd5c0c62495154f103ff6cbf437d6&lat="+response.coord.lat+"&lon="+response.coord.lon;
         $.ajax({
@@ -71,6 +80,11 @@ function searchByCity(cityName){
         }).then(function(response){
             displayUVIndex(response);
         })
+    }).fail(function(){
+        $("#error").hide();
+        $("#col2").hide();
+        var el=$("<div id=\"error\"></div>").text("The city name is not valid");
+        $("#search-section").append(el);
     })
 
    var queryUrlCity5Days="http://api.openweathermap.org/data/2.5/forecast?cnt=5&q="+cityName+"&units=imperial&appid=7b0bd5c0c62495154f103ff6cbf437d6";
@@ -79,12 +93,16 @@ function searchByCity(cityName){
     method: "GET"
    }).then(function(response){
     display5Day(response);
+   }).then(function(){
+    
+    if(localStorage.getItem(cityName)==undefined && cod==200){
+        var el= $("<a class=\"list-group-item list-group-item-action\"></a>").text(cityName);
+       $(".list-group").append(el);
+       }
+       localStorage.setItem(cityName,"weather_search");
+       
    })
-   var el= $("<a class=\"list-group-item list-group-item-action\"></a>").text(cityName);
-   if(localStorage.getItem(cityName)==undefined){
-   $(".list-group").append(el);
-   }
-   localStorage.setItem(cityName,"weather_search");
+  
 }
 
 /* * * * */
@@ -95,10 +113,14 @@ $("a").on("click",function(){
 });
 
 $("#search-input").on("click",function(){
-    console.log("clicked");
+     searchClick=0;
     $("#search-input").val('');
 })
 
 
 
 });
+
+
+
+
