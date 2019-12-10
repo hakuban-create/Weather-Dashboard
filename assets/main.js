@@ -115,7 +115,7 @@ $("a").on("click",function(){
 $("#search-input").on("click",function(){
      searchClick=0;
     $("#search-input").val('');
-})
+});
 
 
 
