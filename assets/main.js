@@ -1,5 +1,5 @@
 $(document).ready(function() {
-$("#wicon").hide();
+$("img").hide();
 $("#row1").hide();
 
 var currentDate=momentAddDays(0);
