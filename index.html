@@ -9,33 +9,32 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark"><h1>Weather Dashboard</h1></nav>
+    <nav class="navbar navbar-dark bg-dark">
+        <h1>Weather Dashboard</h1>
+      </nav>
     <div class="row" id="main-row">
       <div class="col-md-3" id="dashboard">
         <div id="search-section">
         <h5>Search for a City:</h5>
           <div class="input-group md-form form-sm form-2 pl-0">
-              <input class="form-control my-0 py-1 red-border" type="text" aria-label="Search">
+              <input id="search-input" class="form-control my-0 py-1 red-border" placeholder="Enter the city name" type="text" aria-label="Search">
               <div class="input-group-append">
-                <button class="input-group-text red lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
-                    aria-hidden="true"></i></button>
+                  <button id="search-btn" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
               </div>
             </div>
           </div>
 
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-            <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-            <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-            <a href="#" class="list-group-item list-group-item-action" tabindex="-1" aria-disabled="true">Vestibulum at eros</a>
-          </div>
+        <div class="list-group"></div>
       </div>
 
       <div class="col-md-8" id="col2">
+          <div id="spinner" class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
         <div id="row1">
           <div class="row" id="row">
-            <h4 id="city-and-date"></h4>
-            <img id="wicon" src="#" alt="Weather icon">
+            <h4 id="city-and-date">City name</h4>
+            <img id="wicon" src="foo" alt="Weather icon">
           </div>
           <div id="temperature"></div>
           <div id="humidity"></div>
@@ -47,38 +46,36 @@
         <div class="row" id="row2">
           <div class="col-md-2 rounded">
             <div class="date"></div>
+            <img src="foo" alt="" >
             <div></div>
             <div></div>
-            <div></div>
           </div>
           <div class="col-md-2 rounded">
               <div class="date"></div>
-              <div></div>
-              <div></div>
-              <div></div>
-          </div>
-          <div class="col-md-2 rounded">
-              <div class="date"></div>
-              <div></div>
+              <img src="foo" alt=""  >
               <div></div>
               <div></div>
           </div>
           <div class="col-md-2 rounded">
               <div class="date"></div>
-              <div></div>
+              <img src="foo" alt=""  >
               <div></div>
               <div></div>
           </div>
           <div class="col-md-2 rounded">
               <div class="date"></div>
+              <img src="foo" alt=""  >
               <div></div>
+              <div></div>
+          </div>
+          <div class="col-md-2 rounded">
+              <div class="date"></div>
+              <img src="foo" alt=""  >
               <div></div>
               <div></div>
           </div>
       </div>
      </div>
-
-      
 
   </div>
 
@@ -88,7 +85,7 @@
         crossorigin="anonymous"></script>
         <script src="assets/lib/moment_min.js"></script>
         <script src="assets/functions.js"></script>
-    <script src="assets/main.js"></script>
+        <script src="assets/main.js"></script>
     
     
 </body>
