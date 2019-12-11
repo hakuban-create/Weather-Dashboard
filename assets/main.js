@@ -68,7 +68,7 @@ function searchByCity(cityName){
         url: queryUrlCity1Day,
         method: "GET"
     }).then(function(response){
-        $("#error").hide();
+        $(".error").empty();
         $("#col2").show();
         displayCurrent(currentDate,response);
         cod=response.cod;
@@ -81,9 +81,9 @@ function searchByCity(cityName){
             displayUVIndex(response);
         })
     }).fail(function(){
-        $("#error").hide();
+        $(".error").empty();
         $("#col2").hide();
-        var el=$("<div id=\"error\"></div>").text("The city name is not valid");
+        var el=$("<div class=\"error\"></div>").text("The city name is not valid");
         $("#search-section").append(el);
     })
 
@@ -113,6 +113,7 @@ $("a").on("click",function(){
 });
 
 $("#search-input").on("click",function(){
+    $(".error").empty();
      searchClick=0;
     $("#search-input").val('');
 });

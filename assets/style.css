@@ -64,6 +64,6 @@ h1{
     margin: 10% 45%;
 }
 
-#error{
+.error{
     color: red;
 }
