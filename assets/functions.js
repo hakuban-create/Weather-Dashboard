@@ -8,7 +8,7 @@ function momentAddDays(numDays){
 function displayCurrent(currentDate,response){
     $("img").show();
     var iconCode=response.weather[0]['icon'];
-    var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    var iconUrl = "https://openweathermap.org/img/w/" + iconCode + ".png";
         $("#city-and-date").text(response.name+","+response.sys.country+"  ("+currentDate+")");
         $('#wicon').attr('src', iconUrl);
         $("#temperature").text("Temperature: "+response.main.temp+" °F");
@@ -25,7 +25,7 @@ function display5Day(response){
        var temp=response.list[i].main.temp;
        var humid=response.list[i].main.humidity;
        var iconCode=response.list[i].weather[0].icon;
-       var iconUrl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+       var iconUrl = "https://openweathermap.org/img/w/" + iconCode + ".png";
        console.log("humid: "+humid+" icon: "+iconCode);
       var allEl= $(".col-md-2").eq(i).children();
       allEl.eq(0).text(momentAddDays(i+1));
